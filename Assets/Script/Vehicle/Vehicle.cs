@@ -13,13 +13,17 @@ public class Vehicle : MonoBehaviour
 
 
     public float speed, scaleSpeed = 0.01f;
+    float startTime;
     public bool doorClosed = false, isReached = false, checkExplosion = false, isExplode = false;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         animator = GetComponent<Animator>();
         transform.position = new Vector3(transform.position.x, transform.position.y, -40);
+        startTime = Time.time;
     }
 
 
@@ -59,26 +63,25 @@ public class Vehicle : MonoBehaviour
             yield return new WaitForSeconds(1f);
             doorClosed = true;
         }
-        if (GameManager.instance.colliderList.Count >= 10)
+        if (GameManager.instance.colliderList.Count >= 30)
         {
-            scale = scale2 = transform.localScale;
-            scale.x = scale.z += scaleSpeed;
-            scale2.x = scale2.z = 1.2f;
+            float scaleSpeedMesh = GameManager.instance.colliderList.Count;
 
-            if (scale.x <= 1.2f)
-            {
-                transform.localScale = scale;
-            }
-            if(scale.x>=1.2f)
-            {
-                transform.localScale = scale2;
-            }
+            scale = scale2 = transform.localScale;
+            scale.x = scale.z = 1+(scaleSpeedMesh/1000);
+            transform.localScale = scale;
+            GameManager.instance.colorChange();
+            
         }
-        if(GameManager.instance.colliderList.Count >= 15)
+        if (GameManager.instance.colliderList.Count >= 45)
         {
             isExplode = true;
             GameManager.instance.vehicleExpo();
             Explode.instance.explode();
+            yield return new WaitForSeconds(0.5f);
+            Rigidbody r = GameManager.instance.door.GetComponent<Rigidbody>();
+            r.freezeRotation = true;
+
         }
 
     }

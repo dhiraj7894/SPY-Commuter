@@ -1661,6 +1661,10 @@ MonoBehaviour:
   characters: {fileID: 689051668}
   characterPrefeb: {fileID: 5539061208132671294, guid: 3c11b81d1bc455b4ca2e1d3774249b78,
     type: 3}
+  door: {fileID: 4076124098566486479}
+  side: {fileID: 957551034600079830}
+  side1: {fileID: 3653215109692622286}
+  sideCollider: {fileID: 215793932341951897}
   colliderList: []
   characterPosition:
   - {fileID: 142676996}
@@ -1989,8 +1993,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88416a1c37819824c8b1ffdf0144d525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redius: 5
-  force: 700
+  redius: 1
+  force: 25
 --- !u!135 &1974441636
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2387,8 +2391,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215793932341951897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.052000046, y: 0.9059998, z: 1.1860008}
-  m_LocalScale: {x: 0.2, y: 0.7, z: 3.6520867}
+  m_LocalPosition: {x: -0.06, y: 1, z: 1.1860008}
+  m_LocalScale: {x: 0.2, y: 0.8, z: 3.6520867}
   m_Children: []
   m_Father: {fileID: 1211416594}
   m_RootOrder: 1
@@ -2405,6 +2409,7 @@ GameObject:
   - component: {fileID: 215793932341951893}
   - component: {fileID: 215793932341951898}
   - component: {fileID: 215793932341951899}
+  - component: {fileID: 215793932341951900}
   m_Layer: 0
   m_Name: Collider-Side-2
   m_TagString: Untagged
@@ -2430,7 +2435,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ba5ffdab46f8cec41ba92976ce46850f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2464,6 +2469,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &215793932341951900
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215793932341951897}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!95 &220723786435873201
 Animator:
   serializedVersion: 3
@@ -2578,7 +2599,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2602,7 +2623,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957551034600079830}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 0.13228352, z: 0.79999983}
@@ -2615,7 +2636,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957551034600079830}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.26048207, y: 1.3426105, z: 0.79999983}
@@ -2737,7 +2758,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2761,7 +2782,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3653215109692622286}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2, y: 0.12757124, z: 0.79999983}
@@ -2774,7 +2795,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3653215109692622286}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.26048207, y: 0.33191124, z: 0.79999983}
@@ -2808,7 +2829,6 @@ GameObject:
   - component: {fileID: 1819564672060950548}
   - component: {fileID: 8574787859657760018}
   - component: {fileID: 4076124098566486480}
-  - component: {fileID: 4076124098566486481}
   - component: {fileID: 4076124098566486482}
   m_Layer: 9
   m_Name: Door
@@ -2829,22 +2849,10 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4076124098566486481
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4076124098566486479}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd4f7ed9bede2774a95ab8e712d024b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &4076124098566486482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2853,7 +2861,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4076124098566486479}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.24525702, y: 0.32547805, z: 0.7999999}

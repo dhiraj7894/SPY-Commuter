@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Passenger : MonoBehaviour
+public class charactersSet2 : MonoBehaviour
 {
-    public static Passenger instance;
+    public static charactersSet2 instance;
     
     
     public float speed;
@@ -33,8 +33,10 @@ public class Passenger : MonoBehaviour
             }
             if (isTagged)
             {
+                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer2.position, step);
+                
 
-                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer.position, step);
+                
             }
 
         }
@@ -48,7 +50,7 @@ public class Passenger : MonoBehaviour
             
         }
         if(other.gameObject.CompareTag("Character Container")){
-            transform.parent = GameManager.instance.characterContainer;
+            transform.parent = GameManager.instance.characterContainer2;
             foreach (Transform child in other.transform)
             {
                 if (!GameManager.instance.colliderList.Contains(child.gameObject))

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Explode : MonoBehaviour
 {
     public static Explode instance;
-    public float redius = 5f, force = 700f;
+    public float redius = 5f, force;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class Explode : MonoBehaviour
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if(rb != null)
             {
-                rb.AddExplosionForce(force, transform.position, redius);
+                rb.AddExplosionForce(force* Time.deltaTime, transform.position, redius  );
             }
         }
     }
