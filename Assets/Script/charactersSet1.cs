@@ -6,11 +6,7 @@ using UnityEngine.AI;
 public class charactersSet1 : MonoBehaviour
 {
     public static charactersSet1 instance;
-    
-    
     public float speed;
-    
-    
     bool isTagged = false;
 
 
@@ -54,7 +50,9 @@ public class charactersSet1 : MonoBehaviour
             {
                 if (!GameManager.instance.colliderList.Contains(child.gameObject))
                 {
-                    GameManager.instance.colliderList.Add(child.gameObject);  
+                    GameManager.instance.colliderList.Add(child.gameObject);
+                    gameObject.layer = LayerMask.NameToLayer("Default");
+                    Destroy(GetComponent<charactersSet1>(),0.3f);
                 }
             }
         }

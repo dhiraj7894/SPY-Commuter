@@ -6,13 +6,14 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public Transform CarTargetPosition1, CarTargetPosition2, characterDoorCollider, characterContainer, characterContainer2, characters/*, doorPosition, sidePosition, side1Position*/;
+    public Transform CarTargetPosition1, CarTargetPosition2, characterDoorCollider, characterContainer, characterContainer2, characters;
     public GameObject character1Prefeb, bomb, character2Prefeb;
 
     public GameObject door, side, side1, sideCollider;
-    public float startTime;
 
-    public Color endColor;
+
+
+    public Color endColor, startColor;
     public List<GameObject> colliderList;
     public Transform[] characterSet1Position, characterSet2Position;
     void Start()
@@ -20,7 +21,6 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         CharecterSpawn();
-
 
     }
     private void Update()
@@ -50,20 +50,5 @@ public class GameManager : MonoBehaviour
         sideCollider.GetComponent<Rigidbody>().isKinematic = false;
         MeshRenderer m = sideCollider.GetComponent<MeshRenderer>();
         m.enabled = true;
-    }
-    public void colorChange()
-    {
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        Renderer doorR = door.GetComponent<Renderer>();
-        Renderer sideR = side.GetComponent<Renderer>();
-        Renderer side1R = side1.GetComponent<Renderer>();
-        Renderer side2R = sideCollider.GetComponent<Renderer>();
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        float t = (Time.time - startTime) * 1f;
-        doorR.material.color = Color.Lerp(doorR.material.color, endColor, t);
-        sideR.material.color = Color.Lerp(sideR.material.color, endColor, t);
-        side1R.material.color = Color.Lerp(side1R.material.color, endColor, t);
-        side2R.material.color = Color.Lerp(side2R.material.color, endColor, t);
     }
 }

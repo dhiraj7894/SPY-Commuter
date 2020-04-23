@@ -11,7 +11,7 @@ public class charactersSet2 : MonoBehaviour
     public float speed;
     
     
-    bool isTagged = false;
+    bool doorCheck = false;
 
 
 
@@ -27,11 +27,11 @@ public class charactersSet2 : MonoBehaviour
         if (Input.GetMouseButton(0) && Vehicle.instance.isReached)
         {
             float step = speed * Time.deltaTime;
-            if (!isTagged)
+            if (!doorCheck)
             {
                 transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterDoorCollider.position, step);
             }
-            if (isTagged)
+            if (doorCheck)
             {
                     transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer2.position, step);
                 
@@ -46,7 +46,7 @@ public class charactersSet2 : MonoBehaviour
         
         if (other.gameObject.CompareTag("door"))
         {
-            isTagged = true;
+            doorCheck = true;
             
         }
         if(other.gameObject.CompareTag("Character Container")){
@@ -55,7 +55,9 @@ public class charactersSet2 : MonoBehaviour
             {
                 if (!GameManager.instance.colliderList.Contains(child.gameObject))
                 {
-                    GameManager.instance.colliderList.Add(child.gameObject);  
+                    GameManager.instance.colliderList.Add(child.gameObject);
+                    gameObject.layer = LayerMask.NameToLayer("Default");
+                    Destroy(GetComponent<charactersSet2>(), 0.3f);
                 }
             }
         }

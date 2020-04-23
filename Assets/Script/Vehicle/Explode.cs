@@ -21,7 +21,7 @@ public class Explode : MonoBehaviour
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if(rb != null)
             {
-                rb.AddExplosionForce(force* Time.deltaTime, transform.position, redius  );
+                rb.AddExplosionForce(force, transform.position, redius);
             }
         }
     }

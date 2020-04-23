@@ -7,13 +7,14 @@ public class Vehicle : MonoBehaviour
     #region Initialization
     public static Vehicle instance;
     #endregion
+
     public Animator animator;
 
     public Vector3 scale, scale2;
 
 
     public float speed, scaleSpeed = 0.01f;
-    float startTime;
+    float startTime, t;
     public bool doorClosed = false, isReached = false, checkExplosion = false, isExplode = false;
 
     
@@ -48,7 +49,7 @@ public class Vehicle : MonoBehaviour
             isReached = true;
             StartCoroutine(reched());
         }
-
+        
     }
 
 
@@ -63,17 +64,17 @@ public class Vehicle : MonoBehaviour
             yield return new WaitForSeconds(1f);
             doorClosed = true;
         }
-        if (GameManager.instance.colliderList.Count >= 30)
+        if (GameManager.instance.colliderList.Count >= 40)
         {
             float scaleSpeedMesh = GameManager.instance.colliderList.Count;
 
+            animator.SetTrigger("isOverload");
             scale = scale2 = transform.localScale;
             scale.x = scale.z = 1+(scaleSpeedMesh/1000);
             transform.localScale = scale;
-            GameManager.instance.colorChange();
-            
+
         }
-        if (GameManager.instance.colliderList.Count >= 45)
+        if (GameManager.instance.colliderList.Count >= 55)
         {
             isExplode = true;
             GameManager.instance.vehicleExpo();
