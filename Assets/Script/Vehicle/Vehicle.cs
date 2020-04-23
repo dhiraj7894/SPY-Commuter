@@ -7,18 +7,17 @@ public class Vehicle : MonoBehaviour
     #region Initialization
     public static Vehicle instance;
     #endregion
-    public Rigidbody rb;
     public Animator animator;
 
+    public Vector3 scale, scale2;
 
-    public float speed;
-    public bool doorClosed = false, isReached = false;
-    public float Score = 0;
+
+    public float speed, scaleSpeed = 0.01f;
+    public bool doorClosed = false, isReached = false, checkExplosion = false, isExplode = false;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         transform.position = new Vector3(transform.position.x, transform.position.y, -40);
     }
@@ -26,14 +25,18 @@ public class Vehicle : MonoBehaviour
 
     void FixedUpdate()
     {
+        
         if (!doorClosed)
         {
             transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.CarTargetPosition1.position, speed * Time.deltaTime);
         }
-        
+
         if (doorClosed)
         {
-            transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.CarTargetPosition2.position, speed * Time.deltaTime);
+            if (!isExplode)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.CarTargetPosition2.position, speed * Time.deltaTime);
+            } 
         }
 
         if (transform.position == GameManager.instance.CarTargetPosition1.position)
@@ -41,9 +44,10 @@ public class Vehicle : MonoBehaviour
             isReached = true;
             StartCoroutine(reched());
         }
-        
+
     }
-    
+
+
     IEnumerator reched()
     {
         yield return new WaitForSeconds(0.5f);
@@ -57,12 +61,26 @@ public class Vehicle : MonoBehaviour
         }
         if (GameManager.instance.colliderList.Count >= 10)
         {
-            //Animation for destroy after overloading of charecters
+            scale = scale2 = transform.localScale;
+            scale.x = scale.z += scaleSpeed;
+            scale2.x = scale2.z = 1.2f;
+
+            if (scale.x <= 1.2f)
+            {
+                transform.localScale = scale;
+            }
+            if(scale.x>=1.2f)
+            {
+                transform.localScale = scale2;
+            }
         }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Passenger")) ;
+        if(GameManager.instance.colliderList.Count >= 15)
+        {
+            isExplode = true;
+            GameManager.instance.vehicleExpo();
+            Explode.instance.explode();
+        }
+
     }
 
 

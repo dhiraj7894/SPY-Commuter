@@ -6,8 +6,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public Transform CarTargetPosition1, CarTargetPosition2, characterDoorCollider, characterContainer, characters;
-    public GameObject characterPrefeb;
+    public Transform CarTargetPosition1, CarTargetPosition2, characterDoorCollider, characterContainer, characters/*, doorPosition, sidePosition, side1Position*/;
+    public GameObject characterPrefeb/*, doorEffectPrefeb, sideEffectPrefeb, side1EffectPrefeb*/;
+/*
+    public GameObject door, side, side1;*/
+
     public List<GameObject> colliderList;
     public Transform[] characterPosition;
     void Start()
@@ -15,6 +18,13 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         CharecterSpawn();
+/*        door.SetActive(true);
+        side.SetActive(true);
+        side1.SetActive(true);*/
+
+    }
+    private void Update()
+    {
     }
 
     // Update is called once per frame
@@ -25,5 +35,9 @@ public class GameManager : MonoBehaviour
             GameObject clone = Instantiate(characterPrefeb, characterPosition[i].position, Quaternion.identity);
             clone.transform.parent = characters;
         }
+    }
+    public void vehicleExpo()
+    {
+
     }
 }
