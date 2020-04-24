@@ -33,10 +33,10 @@ public class charactersSet2 : MonoBehaviour
             }
             if (doorCheck)
             {
-                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer2.position, step);
-                
+                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer.position, step);
 
-                
+
+
             }
 
         }
@@ -46,11 +46,10 @@ public class charactersSet2 : MonoBehaviour
         
         if (other.gameObject.CompareTag("door"))
         {
-            doorCheck = true;
-            
+            doorCheck = true; 
         }
         if(other.gameObject.CompareTag("Character Container")){
-            transform.parent = GameManager.instance.characterContainer2;
+            transform.parent = GameManager.instance.characterContainer;
             foreach (Transform child in other.transform)
             {
                 if (!GameManager.instance.colliderList.Contains(child.gameObject))

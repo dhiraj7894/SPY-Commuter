@@ -12,11 +12,12 @@ public class Vehicle : MonoBehaviour
 
     public Vector3 scale, scale2;
 
+    public float Green;
 
     public float speed, scaleSpeed = 0.01f;
-    float startTime, t;
     public bool doorClosed = false, isReached = false, checkExplosion = false, isExplode = false;
 
+    public float test;
     
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,7 @@ public class Vehicle : MonoBehaviour
         instance = this;
         animator = GetComponent<Animator>();
         transform.position = new Vector3(transform.position.x, transform.position.y, -40);
-        startTime = Time.time;
+
     }
 
 
@@ -49,7 +50,9 @@ public class Vehicle : MonoBehaviour
             isReached = true;
             StartCoroutine(reched());
         }
-        
+           
+
+
     }
 
 
@@ -64,23 +67,25 @@ public class Vehicle : MonoBehaviour
             yield return new WaitForSeconds(1f);
             doorClosed = true;
         }
-        if (GameManager.instance.colliderList.Count >= 40)
+        if (GameManager.instance.colliderList.Count >= 50)
         {
             float scaleSpeedMesh = GameManager.instance.colliderList.Count;
-
-            animator.SetTrigger("isOverload");
-            scale = scale2 = transform.localScale;
-            scale.x = scale.z = 1+(scaleSpeedMesh/1000);
-            transform.localScale = scale;
+            
+            //animator.SetTrigger("isOverload");
+            //scale = transform.localScale;
+            //scale.x = scale.z = 1+(scaleSpeedMesh/1000);
+            //transform.localScale = scale;
 
         }
-        if (GameManager.instance.colliderList.Count >= 55)
+        if (GameManager.instance.colliderList.Count >= 60)
         {
+            Green = 0;
+            GameManager.instance.colorChange(Green,0f);
             isExplode = true;
             GameManager.instance.vehicleExpo();
             Explode.instance.explode();
             yield return new WaitForSeconds(0.5f);
-            Rigidbody r = GameManager.instance.door.GetComponent<Rigidbody>();
+            Rigidbody r = GameManager.instance.side2.GetComponent<Rigidbody>();
             r.freezeRotation = true;
 
         }

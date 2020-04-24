@@ -9,6 +9,7 @@ public class charactersSet1 : MonoBehaviour
     public float speed;
     bool isTagged = false;
 
+    public byte Green;
 
 
     void Start()
@@ -29,9 +30,9 @@ public class charactersSet1 : MonoBehaviour
             }
             if (isTagged)
             {
-                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer.position, step);
+                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer.position, step);
 
-                
+
             }
 
         }
@@ -42,7 +43,12 @@ public class charactersSet1 : MonoBehaviour
         if (other.gameObject.CompareTag("door"))
         {
             isTagged = true;
-            
+
+            if (GameManager.instance.colliderList.Count >= 50)
+            {
+                GameManager.instance.colorChangeDecrese();
+            }
+
         }
         if(other.gameObject.CompareTag("Character Container")){
             transform.parent = GameManager.instance.characterContainer;
@@ -52,7 +58,7 @@ public class charactersSet1 : MonoBehaviour
                 {
                     GameManager.instance.colliderList.Add(child.gameObject);
                     gameObject.layer = LayerMask.NameToLayer("Default");
-                    Destroy(GetComponent<charactersSet1>(),0.3f);
+                    Destroy(GetComponent<charactersSet1>(), 0.3f);
                 }
             }
         }
