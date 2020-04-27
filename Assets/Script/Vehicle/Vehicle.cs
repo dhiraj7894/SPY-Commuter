@@ -15,7 +15,7 @@ public class Vehicle : MonoBehaviour
     public float Green;
 
     public float speed, scaleSpeed = 0.01f;
-    public bool doorClosed = false, isReached = false, checkExplosion = false, isExplode = false;
+    public bool mouseUp = false, isReached = false, checkExplosion = false, isExplode = false;
 
     public float test;
     
@@ -32,12 +32,12 @@ public class Vehicle : MonoBehaviour
     void FixedUpdate()
     {
         
-        if (!doorClosed)
+        if (!mouseUp)
         {
             transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.CarTargetPosition1.position, speed * Time.deltaTime);
         }
 
-        if (doorClosed)
+        if (mouseUp)
         {
             if (!isExplode)
             {
@@ -65,9 +65,9 @@ public class Vehicle : MonoBehaviour
         {
             animator.SetBool("isReached", false);
             yield return new WaitForSeconds(1f);
-            doorClosed = true;
+            mouseUp = true;
         }
-        if (GameManager.instance.colliderList.Count >= 50)
+        if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad)
         {
             float scaleSpeedMesh = GameManager.instance.colliderList.Count;
             
@@ -77,7 +77,7 @@ public class Vehicle : MonoBehaviour
             //transform.localScale = scale;
 
         }
-        if (GameManager.instance.colliderList.Count >= 60)
+        if (GameManager.instance.colliderList.Count >= GameManager.instance.explodeTrainCount)
         {
             Green = 0;
             GameManager.instance.colorChange(Green,0f);

@@ -7,44 +7,69 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public Transform CarTargetPosition1, CarTargetPosition2, characterDoorCollider, characterContainer, characterContainer2, characters;
+    [Header("Locations of targets")]
+    public Transform CarTargetPosition1;
+    public Transform CarTargetPosition2;
+    public Transform characterDoorCollider;
+    public Transform characterContainer;
+    public Transform characterContainer2;
+    public Transform characters;
+    
+    [Header("Prefebs")]
     public GameObject[] Prefeb;
 
-    public GameObject side2, side, side1, sideCollider, bomb;
+    [Header("Game Objects")]
+    public GameObject side2;
+    public GameObject side;
+    public GameObject side1;
+    public GameObject sideCollider;
+    public GameObject bomb;
+    public GameObject plateformCollider;
+
+    [Header("Float Veriables")]
+    public float xMaxPos;
+    public float xMinPos;
+    public float zMinPos;
+    public float zMaxPos;
+
+    [Header("Int Veriables")]
+    public int PassengersCount;
+    public int maxPassengersLoad;
+    public int explodeTrainCount;
+
 
     float Gr = 1, Bl = 1;
+
+    [Header("List or Arrays")]
     public List<GameObject> colliderList;
     public Transform[] characterSet1Position/*, characterSet2Position*/;
     void Start()
     {
         instance = this;
-
+        plateformCollider.SetActive(true);
         CharecterSpawn();
         Gr = 1;
         Bl = 1;
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+        
     }
 
     // Update is called once per frame
     public void CharecterSpawn()
     {
-        for (int i = 0; i <= characterSet1Position.Length - 1; i++)
+        for(int i = 0; i < PassengersCount; i++)
         {
-            int characterPrefeb = Random.Range(0, 2);
-            GameObject clone = Instantiate(Prefeb[characterPrefeb], characterSet1Position[i].position, Quaternion.identity);
+            float xPosition = Random.Range(xMinPos, xMaxPos);
+            float zPosition = Random.Range(zMinPos, zMaxPos);
+            int characterPrefeb = Random.Range(0, 8);
+            GameObject clone = Instantiate(Prefeb[characterPrefeb], new Vector3(xPosition, 10f, zPosition), Quaternion.identity);
             clone.transform.parent = characters;
+            
         }
-       /* for (int i = 0; i <= characterSet2Position.Length - 1; i++)
-        {
-            GameObject clone = Instantiate(character2Prefeb, characterSet2Position[i].position, Quaternion.identity);
-            clone.transform.parent = characters;
-        }*/
+            
+       
     }
     public void vehicleExpo()
     {
@@ -69,5 +94,9 @@ public class GameManager : MonoBehaviour
         Gr -= 0.1f;
         colorChange(Gr, Bl);
         
+    }
+
+    public void Restart() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
