@@ -6,12 +6,9 @@ public class Sample : MonoBehaviour
 {
     public List<GameObject> bone_list = new List<GameObject>();
 
-    public float speed = 1f;
+    public float speed = 0.2f;
     private void Start()
     {
-       /* int i=0;
-        while (i== 0)
-        {*/
             foreach (Transform child in transform)
             {
                 bone_list.Add(child.gameObject);
@@ -27,8 +24,6 @@ public class Sample : MonoBehaviour
 
     private void Update()
     {
-
-                bone_list[1].transform.Rotate(transform.rotation.x * Time.deltaTime * speed, 0, 0);
 
     }
 

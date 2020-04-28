@@ -24,7 +24,7 @@ public class Vehicle : MonoBehaviour
     {
         instance = this;
         animator = GetComponent<Animator>();
-        transform.position = new Vector3(transform.position.x, transform.position.y, -40);
+        transform.position = new Vector3(transform.position.x, transform.position.y, -90);
 
     }
 

@@ -14,9 +14,10 @@ public class GameManager : MonoBehaviour
     public Transform characterContainer;
     public Transform characterContainer2;
     public Transform characters;
+    public Transform CityPosition;
     
     [Header("Prefebs")]
-    public GameObject[] Prefeb;
+    public GameObject City;
 
     [Header("Game Objects")]
     public GameObject side2;
@@ -42,7 +43,8 @@ public class GameManager : MonoBehaviour
 
     [Header("List or Arrays")]
     public List<GameObject> colliderList;
-    public Transform[] characterSet1Position/*, characterSet2Position*/;
+    public Transform[] characterSet1Position;
+    public GameObject[] CharectersPrefeb;
     void Start()
     {
         instance = this;
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
         CharecterSpawn();
         Gr = 1;
         Bl = 1;
+        
     }
     private void Update()
     {
@@ -59,12 +62,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     public void CharecterSpawn()
     {
-        for(int i = 0; i < PassengersCount; i++)
+        Instantiate(City, CityPosition.position, Quaternion.Euler(0,136,0));
+
+        for (int i = 0; i < PassengersCount; i++)
         {
             float xPosition = Random.Range(xMinPos, xMaxPos);
             float zPosition = Random.Range(zMinPos, zMaxPos);
             int characterPrefeb = Random.Range(0, 8);
-            GameObject clone = Instantiate(Prefeb[characterPrefeb], new Vector3(xPosition, 10f, zPosition), Quaternion.identity);
+            GameObject clone = Instantiate(CharectersPrefeb[characterPrefeb], new Vector3(xPosition, 10f, zPosition), Quaternion.identity);
             clone.transform.parent = characters;
             
         }
@@ -93,7 +98,6 @@ public class GameManager : MonoBehaviour
         Bl = 0;
         Gr -= 0.1f;
         colorChange(Gr, Bl);
-        
     }
 
     public void Restart() {
