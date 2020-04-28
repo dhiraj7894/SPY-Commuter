@@ -851,12 +851,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2647105164804320999}
-  m_LocalRotation: {x: -0.000000021073438, y: 0.00000005960463, z: -1, w: 0.0000001053671}
-  m_LocalPosition: {x: 0.00943183, y: 0.010000361, z: -0.010116694}
-  m_LocalScale: {x: 0.0870997, y: 0.21280794, z: 0.21280794}
+  m_LocalRotation: {x: -0.000000021073442, y: 0.00000011920926, z: -1, w: 0.00000010536711}
+  m_LocalPosition: {x: 0.00003442226, y: -0.00022493892, z: -0.009486815}
+  m_LocalScale: {x: 0.087099686, y: 0.21280791, z: 0.21280791}
   m_Children:
   - {fileID: 1738737440432677381}
-  m_Father: {fileID: 8454718901079477253}
+  m_Father: {fileID: 9048426543234472424}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2743603081596967705
@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 2743603081596967703}
   - component: {fileID: 2743603081596967704}
   m_Layer: 0
-  m_Name: Cube.003
+  m_Name: DoorSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -891,9 +891,9 @@ Transform:
   m_LocalPosition: {x: -0.8206391, y: 5.5537076, z: 9.666653}
   m_LocalScale: {x: 1007.16156, y: 412.2189, z: 412.2189}
   m_Children:
-  - {fileID: 2727692555793015399}
+  - {fileID: 2804915888844866120}
   m_Father: {fileID: 5642575310411482993}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &7042873434291933830
 SkinnedMeshRenderer:
@@ -1346,7 +1346,7 @@ GameObject:
   - component: {fileID: 4076143573269636563}
   - component: {fileID: 4076143573269636564}
   m_Layer: 0
-  m_Name: Cube.002
+  m_Name: RightSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1363,9 +1363,9 @@ Transform:
   m_LocalPosition: {x: -10.285351, y: 5.29406, z: 13.881717}
   m_LocalScale: {x: 1007.16174, y: 412.21893, z: 412.21893}
   m_Children:
-  - {fileID: 2804915888844866120}
+  - {fileID: 2727692555793015399}
   m_Father: {fileID: 5642575310411482993}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &4704983357332398966
 SkinnedMeshRenderer:
@@ -1627,7 +1627,7 @@ GameObject:
   - component: {fileID: 5136402926893163130}
   - component: {fileID: 5136402926893163131}
   m_Layer: 0
-  m_Name: Cube.004
+  m_Name: LeftSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2088,8 +2088,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2715111492437274258}
-  - {fileID: 9048426543234472424}
   - {fileID: 8454718901079477253}
+  - {fileID: 9048426543234472424}
   - {fileID: 827185020396821407}
   - {fileID: 5642575310471828707}
   m_Father: {fileID: 1892385429757528518}
@@ -2746,9 +2746,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2804915888844866120}
-  - component: {fileID: 638117983}
+  - component: {fileID: 1895381581}
   m_Layer: 0
-  m_Name: Armature
+  m_Name: ArmatureDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2761,28 +2761,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6841571552181202240}
-  m_LocalRotation: {x: -0.70710677, y: -0.0000001490116, z: 0.7071068, w: -0.00000023841855}
-  m_LocalPosition: {x: -0.00026227432, y: -0.010161283, z: -0.0005124341}
-  m_LocalScale: {x: 0.24258949, y: 0.24258949, z: 0.099288896}
+  m_LocalRotation: {x: -0.7071067, y: -0.00000020861619, z: 0.7071068, w: -0.0000002384185}
+  m_LocalPosition: {x: 0.009135141, y: 0.00006402882, z: -0.0011423138}
+  m_LocalScale: {x: 0.24258952, y: 0.2425895, z: 0.09928892}
   m_Children:
   - {fileID: 3975947530000853236}
-  m_Father: {fileID: 9048426543234472424}
+  m_Father: {fileID: 8454718901079477253}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &638117983
+--- !u!114 &1895381581
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6841571552181202240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 414644cf9bc1a2148a0d9cb6156564a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bone_list: []
-  speed: 1
+  data: 0
 --- !u!1 &6892737747716149127
 GameObject:
   m_ObjectHideFlags: 0
