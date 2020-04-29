@@ -46,6 +46,7 @@ public class charactersSet : MonoBehaviour
             if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad)
             {
                 GameManager.instance.colorChangeDecrese();
+                GameManager.instance.trainSizeIncreaser();
             }
 
         }

@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public Transform CarTargetPosition2;
     public Transform characterDoorCollider;
     public Transform characterContainer;
-    public Transform characterContainer2;
     public Transform characters;
     public Transform CityPosition;
     
@@ -26,37 +25,44 @@ public class GameManager : MonoBehaviour
     public GameObject sideCollider;
     public GameObject bomb;
     public GameObject plateformCollider;
+    
 
     [Header("Float Veriables")]
     public float xMaxPos;
     public float xMinPos;
     public float zMinPos;
     public float zMaxPos;
+    public float colorChangeSpeed;
+    public float scaleSpeed;
 
     [Header("Int Veriables")]
     public int PassengersCount;
     public int maxPassengersLoad;
     public int explodeTrainCount;
 
-
-    float Gr = 1, Bl = 1;
+    [SerializeField]
+    float Gr = 1;
+    float Bl = 1;
+    float scale = 3;
+    float scale2 = 1;
 
     [Header("List or Arrays")]
     public List<GameObject> colliderList;
     public Transform[] characterSet1Position;
     public GameObject[] CharectersPrefeb;
+    public GameObject[] SizeIncreaser;
+
     void Start()
     {
+        SizeIncreaser[0].transform.localScale = new Vector3(3, 0, 0);
+        SizeIncreaser[1].transform.localScale = new Vector3(1, 0, 0);
+        SizeIncreaser[2].transform.localScale = new Vector3(1, 0, 0);
         instance = this;
         plateformCollider.SetActive(true);
         CharecterSpawn();
         Gr = 1;
         Bl = 1;
-        
-    }
-    private void Update()
-    {
-        
+       // SP.radius = 1;
     }
 
     // Update is called once per frame
@@ -96,8 +102,16 @@ public class GameManager : MonoBehaviour
     public void colorChangeDecrese()
     {
         Bl = 0;
-        Gr -= 0.1f;
+        Gr -= colorChangeSpeed;
         colorChange(Gr, Bl);
+    }
+    public void trainSizeIncreaser()
+    {
+        scale += scaleSpeed;
+        scale2 += scaleSpeed;
+        SizeIncreaser[0].transform.localScale = new Vector3(transform.localScale.x + scale, 0, 0);
+        SizeIncreaser[1].transform.localScale = new Vector3(transform.localScale.x + scale2, 0, 0);
+        SizeIncreaser[2].transform.localScale = new Vector3(transform.localScale.x + scale2, 0, 0);
     }
 
     public void Restart() {

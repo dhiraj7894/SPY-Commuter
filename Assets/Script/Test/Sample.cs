@@ -4,25 +4,15 @@ using UnityEngine;
 
 public class Sample : MonoBehaviour
 {
-    public List<GameObject> bone_list = new List<GameObject>();
+    // public List<GameObject> bone_list = new List<GameObject>();
 
-    //[SerializeField]
-    private float speed = 1f;
-    public float data;
-    private void Start()
+    public GameObject BoneStart;
+    public GameObject BoneEnd;
+
+    
+    public void SetPositin()
     {
-            foreach (Transform child in transform)
-            {
-                bone_list.Add(child.gameObject);
-            }
-
-        setPosition();
+        BoneEnd.transform.position = new Vector3(0, 0, 0);
+        BoneStart.transform.position = new Vector3(0, 0, 0);
     }
-
-
-    private void setPosition()
-    {
-        bone_list[0].transform.position = new Vector3(0, 0.11f, 0);
-    }
-
 }
