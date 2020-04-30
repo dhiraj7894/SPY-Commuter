@@ -2114,7 +2114,7 @@ MonoBehaviour:
   BeforeInboardCharacters: {fileID: 689051668}
   CharecterContainer: {fileID: 1434663467}
   CityPosition: {fileID: 245249852}
-  City: {fileID: 7425434122923041862, guid: 9a79f7abf4e63264d95ac619fc934850, type: 3}
+  City: {fileID: 731277726494635034, guid: 2425e394ca40b5047b7d14e6ce26372b, type: 3}
   DoorSide: {fileID: 1586105642}
   RightSide: {fileID: 1077819403}
   LeftSide: {fileID: 1053493270}
@@ -2374,6 +2374,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Churchgate station
       objectReference: {fileID: 0}
+    - target: {fileID: 3361681635106481019, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.876
+      objectReference: {fileID: 0}
+    - target: {fileID: 3361681635106481019, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 129.87144
+      objectReference: {fileID: 0}
     - target: {fileID: 3991962572932085066, guid: 6c1530efbd068274eb5888496493c6e2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2428,6 +2438,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688376504028892012, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 45.012
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688376504028892012, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.876
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688376504028892012, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 5688376504028892012, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 129.87144
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109418533130333576, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -48.188
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109418533130333576, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.876
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109418533130333576, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109418533130333576, guid: 6c1530efbd068274eb5888496493c6e2,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 129.87144
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c1530efbd068274eb5888496493c6e2, type: 3}
