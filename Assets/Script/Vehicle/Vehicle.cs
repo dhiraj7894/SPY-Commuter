@@ -69,13 +69,7 @@ public class Vehicle : MonoBehaviour
         }
         if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad)
         {
-            float scaleSpeedMesh = GameManager.instance.colliderList.Count;
-            
-            //animator.SetTrigger("isOverload");
-            //scale = transform.localScale;
-            //scale.x = scale.z = 1+(scaleSpeedMesh/1000);
-            //transform.localScale = scale;
-
+            checkExplosion = true;
         }
         if (GameManager.instance.colliderList.Count >= GameManager.instance.explodeTrainCount)
         {
@@ -84,10 +78,8 @@ public class Vehicle : MonoBehaviour
             isExplode = true;
             GameManager.instance.vehicleExpo();
             Explode.instance.explode();
+            
             yield return new WaitForSeconds(0.5f);
-            Rigidbody r = GameManager.instance.side2.GetComponent<Rigidbody>();
-            r.freezeRotation = true;
-
         }
 
     }

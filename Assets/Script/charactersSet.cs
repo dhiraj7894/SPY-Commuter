@@ -8,9 +8,7 @@ public class charactersSet : MonoBehaviour
     public static charactersSet instance;
     public float speed;
     bool isTagged = false;
-
     public byte Green;
-
 
     void Start()
     {
@@ -21,6 +19,7 @@ public class charactersSet : MonoBehaviour
     
     void FixedUpdate()
     {
+        
         if (Input.GetMouseButton(0) && Vehicle.instance.isReached)
         {
             GameManager.instance.plateformCollider.SetActive(false);
@@ -31,7 +30,7 @@ public class charactersSet : MonoBehaviour
             }
             if (isTagged && !Vehicle.instance.mouseUp)
             {
-                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterContainer.position, step);
+                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterInboarPosition.position, step);
             }
 
         }
@@ -42,7 +41,14 @@ public class charactersSet : MonoBehaviour
         if (other.gameObject.CompareTag("door"))
         {
             isTagged = true;
-
+            transform.parent = GameManager.instance.CharecterContainer;
+            foreach (Transform child in GameManager.instance.CharecterContainer.transform)
+            {
+                if (!GameManager.instance.colliderList.Contains(child.gameObject))
+                {
+                    GameManager.instance.colliderList.Add(child.gameObject);
+                }
+            }
             if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad)
             {
                 GameManager.instance.colorChangeDecrese();
@@ -51,16 +57,10 @@ public class charactersSet : MonoBehaviour
 
         }
         if(other.gameObject.CompareTag("Character Container")){
-            transform.parent = GameManager.instance.characterContainer;
-            foreach (Transform child in other.transform)
-            {
-                if (!GameManager.instance.colliderList.Contains(child.gameObject))
-                {
-                    GameManager.instance.colliderList.Add(child.gameObject);
-                    gameObject.layer = LayerMask.NameToLayer("Default");
-                    Destroy(GetComponent<charactersSet>(), 0.3f);
-                }
-            }
+            //gameObject.layer = LayerMask.NameToLayer("Default");
+            Destroy(GetComponent<charactersSet>());
         }
+
+
     }
 }

@@ -8,11 +8,22 @@ public class Sample : MonoBehaviour
 
     public GameObject BoneStart;
     public GameObject BoneEnd;
+    Vector3 startBone;
+    Vector3 endBone;
 
-    
-    public void SetPositin()
+
+    private void FixedUpdate()
     {
-        BoneEnd.transform.position = new Vector3(0, 0, 0);
-        BoneStart.transform.position = new Vector3(0, 0, 0);
+        if (Vehicle.instance.isReached)
+        {
+             startBone = BoneStart.transform.position;
+             endBone = BoneStart.transform.position;
+        }
+
+        if (Vehicle.instance.checkExplosion && !Vehicle.instance.isExplode)
+        {
+            BoneStart.transform.position = startBone;
+            BoneEnd.transform.position = endBone;
+        }
     }
 }
