@@ -178,8 +178,6 @@ public class GameManager : MonoBehaviour
         Destroy(SizeIncreaser[2], 0.5f);
         OtherCompartments_1.GetComponent<Rigidbody>().isKinematic = false;
         OtherCompartments_2.GetComponent<Rigidbody>().isKinematic = false;
-        OtherCompartments_1.GetComponent<Collider>().isTrigger = true;
-        OtherCompartments_2.GetComponent<Collider>().isTrigger = true;
         LeftSide.GetComponent<Collider>().isTrigger = true;
         RightSide.GetComponent<Collider>().isTrigger = true;
         DoorSide.GetComponent<Collider>().isTrigger = true;
