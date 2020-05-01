@@ -22,7 +22,7 @@ public class charactersSet : MonoBehaviour
         
         if (Input.GetMouseButton(0) && Vehicle.instance.isReached)
         {
-            GameManager.instance.plateformCollider.SetActive(false);
+            
             float step = speed * Time.deltaTime;
             if (!isTagged && !Vehicle.instance.mouseUp)
             {

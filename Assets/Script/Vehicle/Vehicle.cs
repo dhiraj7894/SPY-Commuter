@@ -9,22 +9,18 @@ public class Vehicle : MonoBehaviour
     #endregion
 
     public Animator animator;
-
-    public Vector3 scale, scale2;
-
     public float Green;
 
-    public float speed, scaleSpeed = 0.01f;
-    public bool mouseUp = false, isReached = false, checkExplosion = false, isExplode = false;
-
-    public float test;
+    public float speed;
+    public float StartPosition;
+    public bool mouseUp = false, isReached = false, checkExplosion = false, isExplode = false, PerfectTextPopUp = false, citySpwaned = false;
     
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         animator = GetComponent<Animator>();
-        transform.position = new Vector3(transform.position.x, transform.position.y, -90);
+        transform.position = new Vector3(transform.position.x, transform.position.y, StartPosition);
 
     }
 
@@ -47,24 +43,38 @@ public class Vehicle : MonoBehaviour
 
         if (transform.position == GameManager.instance.CarTargetPosition1.position)
         {
+            GameManager.instance.plateformCollider.GetComponent<Collider>().isTrigger = true;
             isReached = true;
             StartCoroutine(reched());
         }
-           
+        if(mouseUp && !isExplode)
+        {
+            if(GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad && !PerfectTextPopUp)
+            {
+                Instantiate(GameManager.instance.PerfectPrefeb, new Vector3(-11.05f, 30, 10), Quaternion.Euler(15, 90, 0));
+                PerfectTextPopUp = true;
+            }
 
-
+            if (transform.position.z <= -40 && !citySpwaned)
+            {
+                GameManager.instance.PlateformSpwan(1, 1);
+                GameManager.instance.CitySpwan(1, 1);
+                citySpwaned = true;
+            }
+        }
+        
     }
 
 
     IEnumerator reched()
     {
-        yield return new WaitForSeconds(0.5f);
-        animator.SetBool("isReached", true);
+        //yield return new WaitForSeconds(0.5f);
+        //animator.SetBool("isReached", true);
 
         if (Input.GetMouseButtonUp(0))
         {
-            animator.SetBool("isReached", false);
-            yield return new WaitForSeconds(1f);
+            //animator.SetBool("isReached", false);
+            yield return new WaitForSeconds(0.5f);
             mouseUp = true;
         }
         if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad)
@@ -75,11 +85,9 @@ public class Vehicle : MonoBehaviour
         {
             Green = 0;
             GameManager.instance.colorChange(Green,0f);
-            isExplode = true;
             GameManager.instance.vehicleExpo();
+            isExplode = true;
             Explode.instance.explode();
-            
-            yield return new WaitForSeconds(0.5f);
         }
 
     }

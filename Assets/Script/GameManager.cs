@@ -7,62 +7,90 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [Header("Locations of targets")]
+    #region __init
+    [Header("Train movement target")]
     public Transform CarTargetPosition1;
     public Transform CarTargetPosition2;
+
+    [Header("Passenger target")]
     public Transform characterDoorCollider;
     public Transform characterInboarPosition;
     public Transform BeforeInboardCharacters;
     public Transform CharecterContainer;
     public Transform CityPosition;
-    
-    [Header("Prefebs")]
-    public GameObject City;
 
-    [Header("Game Objects")]
+    [Header("Other targets")]
+    public Transform TMP;
+    
+    [Header("City to spwan")]
+    public GameObject[] City;
+
+    [Header("Trains Parts")]
     public GameObject DoorSide;
     public GameObject RightSide;
     public GameObject LeftSide;
     public GameObject BaseSide;
     public GameObject UPside;
-    public GameObject sideCollider;
     public GameObject bomb;
-    public GameObject plateformCollider;
     public GameObject OtherCompartments_1;
     public GameObject OtherCompartments_2;
-    public GameObject Vehicale;
+    public GameObject SideExplode_1;
+    public GameObject SideExplode_2;
 
+    [Header("Plateform")]
+    public GameObject sideCollider;
+    public GameObject plateformCollider;
 
-    [Header("Float Veriables")]
+    [Header("Stations")]
+    public GameObject[] stations;
+
+    [Header("TextMeshPro")]
+    public GameObject PerfectPrefeb;
+    public GameObject OverloadPrefeb;
+
+    [Header("Canves")]
+    public GameObject cameraScreen;
+
+    [Header("Bound for passengers to spwan.")]
     public float xMaxPos;
     public float xMinPos;
     public float zMinPos;
     public float zMaxPos;
+
+    [Header("Float values for modification")]
     public float colorChangeSpeed;
     public float scaleSpeed;
-    public float gravityScale;
 
-    [Header("Int Veriables")]
+    [Header("Train Capacity and load")]
     public int PassengersCount;
     public int maxPassengersLoad;
     public int explodeTrainCount;
 
-    [SerializeField]
+    [Header("List or Arrays")]
+    public List<GameObject> colliderList;
+    public GameObject[] CharectersPrefeb;
+    public GameObject[] SizeIncreaser;
+
+    [Header("Plateform Position")]
+    public Vector3[] plateformPosition;
+    public Vector3[] cityPosition;
+    #endregion
+
     float Gr = 1;
     float Bl = 1;
     float scale = 3;
-    float scale2 = 0;
+    float scale2 = 1f;
 
-    [Header("List or Arrays")]
-    public List<GameObject> colliderList;
-    public Transform[] characterSet1Position;
-    public GameObject[] CharectersPrefeb;
-    public GameObject[] SizeIncreaser;
+
 
     bool calOnce = false;
 
     void Start()
     {
+        cameraScreen.SetActive(false);
+        PlateformSpwan(0, 0);
+        CitySpwan(0, 0);
+        Application.targetFrameRate = 60;
         SizeIncreaser[0].transform.localScale = new Vector3(3, 0, 0);
         SizeIncreaser[1].transform.localScale = new Vector3(1, 0, 0);
         SizeIncreaser[2].transform.localScale = new Vector3(1, 0, 0);
@@ -71,6 +99,9 @@ public class GameManager : MonoBehaviour
         CharecterSpawn();
         Gr = 1;
         Bl = 1;
+
+        SideExplode_1.SetActive(false);
+        SideExplode_2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -84,6 +115,7 @@ public class GameManager : MonoBehaviour
             {
                 callOnce();
             }
+            
         }
 
         if (!Vehicle.instance.isExplode)
@@ -92,11 +124,7 @@ public class GameManager : MonoBehaviour
             {
                 SizeIncreaser[0].transform.localScale = new Vector3(5.5f, 0, 0);
             }
-            if (SizeIncreaser[1].transform.localScale.x > 2.5f)
-            {
-                SizeIncreaser[1].transform.localScale = new Vector3(2.5f, 0, 0);
-                SizeIncreaser[2].transform.localScale = new Vector3(2.5f, 0, 0);
-            }
+
         }
 
         if (Vehicle.instance.checkExplosion)
@@ -106,19 +134,24 @@ public class GameManager : MonoBehaviour
     }
     public void CharecterSpawn()
     {
-        Instantiate(City, CityPosition.position, Quaternion.Euler(0,0,0));
-
         for (int i = 0; i < PassengersCount; i++)
         {
             float xPosition = Random.Range(xMinPos, xMaxPos);
             float zPosition = Random.Range(zMinPos, zMaxPos);
             int characterPrefeb = Random.Range(0, 8);
             GameObject clone = Instantiate(CharectersPrefeb[characterPrefeb], new Vector3(xPosition, 10f, zPosition), Quaternion.identity);
-            clone.transform.parent = BeforeInboardCharacters;
-            
+            clone.transform.parent = BeforeInboardCharacters; 
         }
-            
-       
+
+    }
+
+    public void PlateformSpwan(int stationNumber, int positionNumber)
+    {
+        Instantiate(stations[stationNumber], plateformPosition[positionNumber], Quaternion.Euler(0, -90, 0));
+    }
+    public void CitySpwan(int cityNumber, int cityposition)
+    {
+        GameObject clone = Instantiate(City[cityNumber], cityPosition[cityposition], Quaternion.Euler(0, 0, 0));
     }
     public void vehicleExpo()
     {
@@ -128,6 +161,8 @@ public class GameManager : MonoBehaviour
             RightSide.GetComponent<Rigidbody>().isKinematic = false;
             LeftSide.GetComponent<Rigidbody>().isKinematic = false;
             BaseSide.GetComponent<Rigidbody>().isKinematic = false;
+            SideExplode_1.GetComponent<Rigidbody>().isKinematic = false;
+            SideExplode_2.GetComponent<Rigidbody>().isKinematic = false;
             bomb.GetComponent<Rigidbody>().isKinematic = false;
             sideCollider.GetComponent<Rigidbody>().isKinematic = false;
             MeshRenderer m = sideCollider.GetComponent<MeshRenderer>();
@@ -143,6 +178,9 @@ public class GameManager : MonoBehaviour
             LeftSide.GetComponent<Renderer>().material.color = new Color(1, G, B, 1);
             sideCollider.GetComponent<Renderer>().material.color = new Color(1, G, B, 1);
             DoorSide.GetComponent<Renderer>().material.color = new Color(1, G, B, 1);
+            SideExplode_1.GetComponent<Renderer>().material.color = new Color(1, G, B, 1);
+            SideExplode_2.GetComponent<Renderer>().material.color = new Color(1, G, B, 1);
+
         }
             
     }
@@ -168,16 +206,33 @@ public class GameManager : MonoBehaviour
     public void Restart() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-    public void callOnce()
+    public void loadLevel(int level)
     {
+        SceneManager.LoadScene(level);
+    }
+    public void callOnce()
+
+    {
+        GameObject overloaded = Instantiate(OverloadPrefeb, new Vector3(-11.05f,30, 10), Quaternion.Euler(15, 90, 0));
+        overloaded.transform.parent = TMP;
+
+        SideExplode_1.SetActive(true);
+        SideExplode_2.SetActive(true);
+
         Destroy(DoorSide, 1f);
-        Destroy(LeftSide, 1f);
-        Destroy(RightSide, 1f);
+        Destroy(LeftSide,0.1f);
+        Destroy(RightSide, 0.1f);
+        Destroy(SideExplode_1, 1);
+        Destroy(SideExplode_2, 1);
+        Destroy(sideCollider, 1);
+
         Destroy(SizeIncreaser[0], 0.5f);
         Destroy(SizeIncreaser[1], 0.5f);
         Destroy(SizeIncreaser[2], 0.5f);
+
         OtherCompartments_1.GetComponent<Rigidbody>().isKinematic = false;
         OtherCompartments_2.GetComponent<Rigidbody>().isKinematic = false;
+
         LeftSide.GetComponent<Collider>().isTrigger = true;
         RightSide.GetComponent<Collider>().isTrigger = true;
         DoorSide.GetComponent<Collider>().isTrigger = true;
