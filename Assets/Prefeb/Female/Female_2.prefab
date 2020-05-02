@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4254230062596983572}
   - component: {fileID: 8991572216268338101}
   - component: {fileID: 1034790471450526103}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Female_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

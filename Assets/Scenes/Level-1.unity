@@ -407,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 63771988}
   Green: 0
-  speed: 25
+  speed: 45
   StartPosition: -90
   mouseUp: 0
   isReached: 0
@@ -1060,7 +1060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 603922152}
   m_Layer: 0
-  m_Name: Car Target Position 1
+  m_Name: Train Target Position 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1474,7 +1474,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  target: {fileID: 1968633322}
+  nextPosition: []
 --- !u!1 &753674059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6185376291814524678, guid: 7f6b0525b4c8c844c9330c2e4255acd8,
@@ -2355,6 +2355,7 @@ Transform:
   - {fileID: 1676548950}
   - {fileID: 1056243996}
   - {fileID: 426392145}
+  - {fileID: 1434663467}
   m_Father: {fileID: 63771989}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2419,7 +2420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232152508}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 6.631, z: -0.686}
+  m_LocalPosition: {x: -7.84, y: 6.631, z: -0.686}
   m_LocalScale: {x: 0.44562072, y: 5.9314036, z: 3.0541353}
   m_Children: []
   m_Father: {fileID: 1160480942}
@@ -2693,12 +2694,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1434663466}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.1572528, y: 3.725607, z: 3.9752455}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.5, y: 0, z: 8.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1160480942}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523461871
 GameObject:
@@ -2908,8 +2909,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b591cb8638829f42b1cbf9d69cb7eba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CarTargetPosition1: {fileID: 603922152}
-  CarTargetPosition2: {fileID: 1945252667}
+  TrainTargetPosition1: {fileID: 603922152}
+  TrainTargetPosition2: {fileID: 1945252667}
+  targetPosZ: -56
   characterDoorCollider: {fileID: 1232152509}
   characterInboarPosition: {fileID: 1056243996}
   BeforeInboardCharacters: {fileID: 689051668}
@@ -2933,7 +2935,7 @@ MonoBehaviour:
   plateformCollider: {fileID: 3963874067844462326}
   stations:
   - {fileID: 5250657840989251863, guid: 6c1530efbd068274eb5888496493c6e2, type: 3}
-  - {fileID: 3063703278690883535, guid: e72438f269f795d4897e6867c0846ac6, type: 3}
+  - {fileID: 5250657840989251863, guid: 6c1530efbd068274eb5888496493c6e2, type: 3}
   PerfectPrefeb: {fileID: 8023197982949420161, guid: 704444ddd38401f488023cf35a3330c0,
     type: 3}
   OverloadPrefeb: {fileID: 4014605052714379096, guid: 70314b78f1f44924ab4a1dec0c4de9ae,
@@ -2945,7 +2947,7 @@ MonoBehaviour:
   zMaxPos: 30
   colorChangeSpeed: 0.05
   scaleSpeed: 0.1
-  PassengersCount: 30
+  PassengersCount: 40
   maxPassengersLoad: 40
   explodeTrainCount: 50
   colliderList: []
@@ -2964,10 +2966,10 @@ MonoBehaviour:
   - {fileID: 221922918}
   plateformPosition:
   - {x: 0, y: 0.2, z: 0}
-  - {x: 0, y: 0.2, z: -250}
   cityPosition:
   - {x: -10, y: 0, z: 0}
-  - {x: -10, y: 0, z: -250}
+  TrainTargetPos:
+  - {x: -2.5, y: 0, z: -55}
 --- !u!1 &1719739037 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2485819000809271722, guid: 7f6b0525b4c8c844c9330c2e4255acd8,
@@ -3094,7 +3096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1945252667}
   m_Layer: 0
-  m_Name: Car Target Position 2
+  m_Name: Train Target Position 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3108,7 +3110,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945252666}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 0, z: -250}
+  m_LocalPosition: {x: -2.5, y: 0, z: -55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1201760188}

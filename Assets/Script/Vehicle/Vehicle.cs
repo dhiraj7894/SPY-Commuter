@@ -11,6 +11,7 @@ public class Vehicle : MonoBehaviour
     public Animator animator;
     public float Green;
 
+    
     public float speed;
     public float StartPosition;
     public bool mouseUp = false, isReached = false, checkExplosion = false, isExplode = false, PerfectTextPopUp = false, citySpwaned = false;
@@ -30,18 +31,18 @@ public class Vehicle : MonoBehaviour
         
         if (!mouseUp)
         {
-            transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.CarTargetPosition1.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.TrainTargetPosition1.position, speed * Time.deltaTime);
         }
 
         if (mouseUp)
         {
             if (!isExplode)
             {
-                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.CarTargetPosition2.position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.TrainTargetPosition2.position, speed * Time.deltaTime);
             } 
         }
 
-        if (transform.position == GameManager.instance.CarTargetPosition1.position)
+        if (transform.position == GameManager.instance.TrainTargetPosition1.position)
         {
             GameManager.instance.plateformCollider.GetComponent<Collider>().isTrigger = true;
             isReached = true;
@@ -55,12 +56,20 @@ public class Vehicle : MonoBehaviour
                 PerfectTextPopUp = true;
             }
 
-            if (transform.position.z <= -40 && !citySpwaned)
+            if (transform.position.z <= GameManager.instance.targetPosZ && !citySpwaned)
             {
                 GameManager.instance.PlateformSpwan(1, 1);
                 GameManager.instance.CitySpwan(1, 1);
+                charactersSet.instance.isTagged = false;
+                isReached = false;
                 citySpwaned = true;
+                GameManager.instance.charecterOnMarine();
             }
+            
+        }
+        if(Vehicle.instance.transform.position.z >= -220)
+        {
+            isReached = true;
         }
         
     }

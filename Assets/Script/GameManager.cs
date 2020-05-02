@@ -9,8 +9,11 @@ public class GameManager : MonoBehaviour
 
     #region __init
     [Header("Train movement target")]
-    public Transform CarTargetPosition1;
-    public Transform CarTargetPosition2;
+    public Transform TrainTargetPosition1;
+    public Transform TrainTargetPosition2;
+
+    [Header("Train movement position")]
+    public float targetPosZ;
 
     [Header("Passenger target")]
     public Transform characterDoorCollider;
@@ -51,11 +54,17 @@ public class GameManager : MonoBehaviour
     [Header("Canves")]
     public GameObject cameraScreen;
 
-    [Header("Bound for passengers to spwan.")]
+    [Header("Bound for Churchgate")]
     public float xMaxPos;
     public float xMinPos;
     public float zMinPos;
     public float zMaxPos;
+
+    [Header("Bound for MarineLine")]
+    public float xMaxPosM;
+    public float xMinPosM;
+    public float zMinPosM;
+    public float zMaxPosM;
 
     [Header("Float values for modification")]
     public float colorChangeSpeed;
@@ -74,6 +83,7 @@ public class GameManager : MonoBehaviour
     [Header("Plateform Position")]
     public Vector3[] plateformPosition;
     public Vector3[] cityPosition;
+    public Vector3[] TrainTargetPos;
     #endregion
 
     float Gr = 1;
@@ -84,19 +94,29 @@ public class GameManager : MonoBehaviour
 
 
     bool calOnce = false;
+    bool charecterSpwanned = false;
 
     void Start()
     {
+        Application.targetFrameRate = 60;
+        instance = this;
+
+        TrainTargetPosition2.transform.position = TrainTargetPos[0];
+
+        plateformCollider.SetActive(true);
         cameraScreen.SetActive(false);
+
+        CharecterSpawn();
         PlateformSpwan(0, 0);
         CitySpwan(0, 0);
-        Application.targetFrameRate = 60;
+
+        
+
         SizeIncreaser[0].transform.localScale = new Vector3(3, 0, 0);
         SizeIncreaser[1].transform.localScale = new Vector3(1, 0, 0);
         SizeIncreaser[2].transform.localScale = new Vector3(1, 0, 0);
-        instance = this;
-        plateformCollider.SetActive(true);
-        CharecterSpawn();
+
+
         Gr = 1;
         Bl = 1;
 
@@ -107,8 +127,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-
-
         if (Vehicle.instance.isExplode)
         {
             if (!calOnce)
@@ -134,15 +152,15 @@ public class GameManager : MonoBehaviour
     }
     public void CharecterSpawn()
     {
-        for (int i = 0; i < PassengersCount; i++)
+        for (int i = 0; i < PassengersCount/3; i++)
         {
             float xPosition = Random.Range(xMinPos, xMaxPos);
             float zPosition = Random.Range(zMinPos, zMaxPos);
             int characterPrefeb = Random.Range(0, 8);
             GameObject clone = Instantiate(CharectersPrefeb[characterPrefeb], new Vector3(xPosition, 10f, zPosition), Quaternion.identity);
+
             clone.transform.parent = BeforeInboardCharacters; 
         }
-
     }
 
     public void PlateformSpwan(int stationNumber, int positionNumber)
@@ -241,4 +259,19 @@ public class GameManager : MonoBehaviour
         calOnce = true;
     }
 
+    public void charecterOnMarine()
+    {
+        if (Vehicle.instance.citySpwaned && !charecterSpwanned)
+        {
+            for (int i = 0; i < PassengersCount / 2; i++)
+            {
+                float xPosition = Random.Range(xMinPosM, xMaxPosM);
+                float zPosition = Random.Range(zMinPosM, zMaxPosM);
+                int characterPrefeb = Random.Range(0, 8);
+                GameObject clone = Instantiate(CharectersPrefeb[characterPrefeb], new Vector3(xPosition, 10f, zPosition), Quaternion.identity);
+                clone.transform.parent = BeforeInboardCharacters;
+            }
+            charecterSpwanned = true;
+        }
+    }
 }

@@ -7,7 +7,7 @@ public class charactersSet : MonoBehaviour
 {
     public static charactersSet instance;
     public float speed;
-    bool isTagged = false;
+    public bool isTagged = false;
     public byte Green;
 
     void Start()
@@ -22,17 +22,31 @@ public class charactersSet : MonoBehaviour
         
         if (Input.GetMouseButton(0) && Vehicle.instance.isReached)
         {
-            
-            float step = speed * Time.deltaTime;
-            if (!isTagged && !Vehicle.instance.mouseUp)
+            if(transform.position.z >= -30)
             {
-                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterDoorCollider.position, step);
+                float step = speed * Time.deltaTime;
+                if (!isTagged && !Vehicle.instance.mouseUp)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterDoorCollider.position, step);
+                }
+                if (isTagged && !Vehicle.instance.mouseUp)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterInboarPosition.position, step);
+                }
             }
-            if (isTagged && !Vehicle.instance.mouseUp)
+            if(Vehicle.instance.transform.position.z >= -220)
             {
-                transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterInboarPosition.position, step);
+                float step = speed * Time.deltaTime;
+                if (!isTagged)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterDoorCollider.position, step);
+                }
+                if (isTagged)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterInboarPosition.position, step);
+                }
             }
-
+           
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -57,7 +71,7 @@ public class charactersSet : MonoBehaviour
 
         }
         if(other.gameObject.CompareTag("Character Container")){
-            //gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Default");
             Destroy(GetComponent<charactersSet>());
         }
 
