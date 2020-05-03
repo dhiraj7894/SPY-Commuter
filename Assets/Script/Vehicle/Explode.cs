@@ -15,13 +15,15 @@ public class Explode : MonoBehaviour
     // Update is called once per frame
     public void explode()
     {
+        //Collect all collider with this sphere is colliding in array
        Collider[] colliders =  Physics.OverlapSphere(transform.position, redius);
+        //every each collider which are present nearby get component rigidbody and apply force 
         foreach(Collider nearbyObject in colliders)
         {
             Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
             if(rb != null)
             {
-                rb.AddExplosionForce(force, transform.position, redius,upForce, ForceMode.Impulse);
+                rb.AddExplosionForce(force, transform.position, redius, upForce, ForceMode.Impulse);
             }
         }
     }

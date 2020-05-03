@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5794586886142751268}
   - component: {fileID: 7382955913127493449}
   - component: {fileID: 4721646370962322}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Male_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339390686588200217}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 20
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -63,7 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2867410c7dc757c4bbf8bf341b6eb722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 20
+  isTagged: 0
   Green: 0
 --- !u!136 &7382955913127493449
 CapsuleCollider:
@@ -75,7 +76,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.6
+  m_Radius: 0.3
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: -0.5, z: 0}

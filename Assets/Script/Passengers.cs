@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class charactersSet : MonoBehaviour
+public class Passengers : MonoBehaviour
 {
-    public static charactersSet instance;
+    public static Passengers instance;
     public float speed;
-    public bool isTagged = false;
+    public bool collidedWithDoor = false;
     public byte Green;
 
     void Start()
@@ -19,43 +19,31 @@ public class charactersSet : MonoBehaviour
     
     void FixedUpdate()
     {
-        
+     //if we press down on screen just move the passengers toward the door collider till we did not unpress the screen 
+     //after colliding to door collder change movement toward inboard collider which is present inside of train
+     //after colliding with inboard collider remove or set deactive this script so they can able fill like crowd
         if (Input.GetMouseButton(0) && Vehicle.instance.isReached)
         {
-            if(transform.position.z >= -30)
-            {
                 float step = speed * Time.deltaTime;
-                if (!isTagged && !Vehicle.instance.mouseUp)
+                if (!collidedWithDoor && !Vehicle.instance.mouseUp)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterDoorCollider.position, step);
                 }
-                if (isTagged && !Vehicle.instance.mouseUp)
+                if (collidedWithDoor && !Vehicle.instance.mouseUp)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterInboarPosition.position, step);
-                }
-            }
-            if(Vehicle.instance.transform.position.z >= -220)
-            {
-                float step = speed * Time.deltaTime;
-                if (!isTagged)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterDoorCollider.position, step);
-                }
-                if (isTagged)
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.characterInboarPosition.position, step);
-                }
-            }
-           
+                }  
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        //setting after colliding with door add game object in the list and set parent to charecter container.
         if (other.gameObject.CompareTag("door"))
         {
-            isTagged = true;
+            collidedWithDoor = true;
+
             transform.parent = GameManager.instance.CharecterContainer;
+
             foreach (Transform child in GameManager.instance.CharecterContainer.transform)
             {
                 if (!GameManager.instance.colliderList.Contains(child.gameObject))
@@ -63,6 +51,7 @@ public class charactersSet : MonoBehaviour
                     GameManager.instance.colliderList.Add(child.gameObject);
                 }
             }
+            //if list of passenger is increse by maximum passenger count start changing color to red and start expanding
             if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad)
             {
                 GameManager.instance.colorChangeDecrese();
@@ -70,9 +59,10 @@ public class charactersSet : MonoBehaviour
             }
 
         }
+        //if we collide with charecter container which inside of train just destroy this script
         if(other.gameObject.CompareTag("Character Container")){
-            gameObject.layer = LayerMask.NameToLayer("Default");
-            Destroy(GetComponent<charactersSet>());
+            //gameObject.layer = LayerMask.NameToLayer("Default");
+            Destroy(GetComponent<Passengers>());
         }
 
 

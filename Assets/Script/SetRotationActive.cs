@@ -5,18 +5,22 @@ using UnityEngine;
 public class SetRotationActive : MonoBehaviour
 {
     Rigidbody rb;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Vehicle.instance.isExplode)
         {
+            //set rotation false so passenger can rotate during falling from the explosion
             rb.freezeRotation = false;
+
+            //increase gravity by multiplying he rigibody mass
+            rb.AddForce(Physics.gravity * rb.mass);
         }
     }
 }

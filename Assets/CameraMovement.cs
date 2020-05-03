@@ -15,21 +15,26 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()  
     {
-        if(Vehicle.instance.citySpwaned)
+        //**currently this line of Code is unused after spwanning marine line camera**
+        //will change it's postion to marine line view
+
+        if (Vehicle.instance.citySpwaned)
         {
+            //set active camera view during train gose to next station currently showing a white image
             GameManager.instance.cameraScreen.SetActive(true);
+
             StartCoroutine(cameraPosChange());
         }
-        if (transform.position.z <= nextPosition[0].z)
-        {
-            GameManager.instance.cameraScreen.SetActive(false);
-        }
+        
     }
+
+
     IEnumerator cameraPosChange()
     {
         yield return new WaitForSeconds(0.8f);
         if (nextPosition != null)
         {
+            //selecting vector3 positon from inpector.
             transform.position = nextPosition[0];
         }  
         
