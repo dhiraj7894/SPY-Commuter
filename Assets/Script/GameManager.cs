@@ -39,9 +39,9 @@ public class GameManager : MonoBehaviour
     public GameObject OtherCompartments_2;
     public GameObject SideExplode_1;
     public GameObject SideExplode_2;
+    public GameObject sideCollider;
 
     [Header("Plateform")]
-    public GameObject sideCollider;
     public GameObject plateformCollider;
 
     [Header("Stations")]
@@ -65,6 +65,9 @@ public class GameManager : MonoBehaviour
     public float xMinPosM;
     public float zMinPosM;
     public float zMaxPosM;
+
+    [Header("Car Speed")]
+    public float carSpeed;
 
     [Header("Float values for modification")]
     public float colorChangeSpeed;
@@ -175,7 +178,7 @@ public class GameManager : MonoBehaviour
             int characterPrefeb = Random.Range(0, 8);
 
             //Spwan passengers and set parent to container
-            GameObject clone = Instantiate(CharectersPrefeb[characterPrefeb], new Vector3(xPosition, 10f, zPosition), Quaternion.identity);
+            GameObject clone = Instantiate(CharectersPrefeb[characterPrefeb], new Vector3(xPosition, 6f, zPosition), Quaternion.identity);
             clone.transform.parent = BeforeInboardCharacters; 
         }
     }
@@ -201,7 +204,7 @@ public class GameManager : MonoBehaviour
             RightSide.GetComponent<Rigidbody>().isKinematic = false;
             LeftSide.GetComponent<Rigidbody>().isKinematic = false;
             BaseSide.GetComponent<Rigidbody>().isKinematic = false;
-
+            sideCollider.GetComponent<Rigidbody>().isKinematic = false;
             SideExplode_1.GetComponent<Rigidbody>().isKinematic = false;
             SideExplode_2.GetComponent<Rigidbody>().isKinematic = false;
 
@@ -242,11 +245,12 @@ public class GameManager : MonoBehaviour
         if (!Vehicle.instance.isExplode)
         {
             //here we are scallig the size of sphere colliders so our train can able to expands like it getting load burden
-            scale += scaleSpeed;
+            scale += scaleSpeed;//starting size will be 3
+            scale2 += scaleSpeed;//starting size will be 1
 
             SizeIncreaser[0].transform.localScale = new Vector3(transform.localScale.x + scale, 0, 0);
-            SizeIncreaser[1].transform.localScale = new Vector3(transform.localScale.x + scale, 0, 0);
-            SizeIncreaser[2].transform.localScale = new Vector3(transform.localScale.x + scale, 0, 0);
+            SizeIncreaser[1].transform.localScale = new Vector3(transform.localScale.x + scale2, 0, 0);
+            SizeIncreaser[2].transform.localScale = new Vector3(transform.localScale.x + scale2, 0, 0);
         }
             
     }

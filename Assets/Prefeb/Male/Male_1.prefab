@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1889661161930930814}
   - component: {fileID: 7449633760887275592}
   - component: {fileID: 3773703147402984625}
+  - component: {fileID: 4132614914131334695}
   m_Layer: 0
   m_Name: Male_1
   m_TagString: Untagged
@@ -79,6 +80,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!95 &4132614914131334695
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3198176995760949357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 63ebb0bcd836a03449c285ee04219374, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5869497261874105317
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +112,7 @@ GameObject:
   - component: {fileID: 4196651310165848768}
   - component: {fileID: 9079244584895072865}
   - component: {fileID: 6170769224412531258}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Male_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -143,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  isTagged: 0
+  collidedWithDoor: 0
   Green: 0
 --- !u!136 &9079244584895072865
 CapsuleCollider:

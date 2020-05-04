@@ -61,10 +61,10 @@ public class Passengers : MonoBehaviour
         }
         //if we collide with charecter container which inside of train just destroy this script
         if(other.gameObject.CompareTag("Character Container")){
-            //gameObject.layer = LayerMask.NameToLayer("Default");
             Destroy(GetComponent<Passengers>());
         }
 
 
     }
+
 }

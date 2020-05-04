@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18332838, g: 0.2289512, b: 0.3062173, a: 1}
+  m_IndirectSpecularColor: {r: 0.18142894, g: 0.22705705, b: 0.30738804, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3322,7 +3322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrainTargetPosition1: {fileID: 603922152}
   TrainTargetPosition2: {fileID: 1945252667}
-  targetPosZ: -56
+  targetPosZ: -95
   characterDoorCollider: {fileID: 1232152509}
   characterInboarPosition: {fileID: 1056243996}
   BeforeInboardCharacters: {fileID: 689051668}
@@ -3348,7 +3348,7 @@ MonoBehaviour:
   - {fileID: 5250657840989251863, guid: 6c1530efbd068274eb5888496493c6e2, type: 3}
   PerfectPrefeb: {fileID: 8023197982949420161, guid: 704444ddd38401f488023cf35a3330c0,
     type: 3}
-  OverloadPrefeb: {fileID: 4014605052714379096, guid: 70314b78f1f44924ab4a1dec0c4de9ae,
+  ExplodePrefeb: {fileID: 4014605052714379096, guid: 70314b78f1f44924ab4a1dec0c4de9ae,
     type: 3}
   cameraScreen: {fileID: 2033668614}
   xMaxPos: 4
@@ -3359,10 +3359,11 @@ MonoBehaviour:
   xMinPosM: 0
   zMinPosM: 0
   zMaxPosM: 0
+  carSpeed: 0
   colorChangeSpeed: 0.01
   scaleSpeed: 0.01
   GravityOfPassengers: 2
-  PassengersCount: 120
+  PassengersCount: 90
   maxPassengersLoad: 20
   explodeTrainCount: 80
   colliderList: []
@@ -3384,7 +3385,7 @@ MonoBehaviour:
   cityPosition:
   - {x: -10, y: 0, z: 0}
   TrainTargetPos:
-  - {x: -2.5, y: 0, z: -55}
+  - {x: -2.5, y: 0, z: -90}
 --- !u!114 &1712614979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3430,7 +3431,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747478881}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.309017, y: 0, z: 0, w: 0.95105654}
   m_LocalPosition: {x: 91, y: 286, z: -78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3438,7 +3439,7 @@ Transform:
   - {fileID: 1101731879}
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 36, y: 0, z: 0}
 --- !u!1 &1778876720
 GameObject:
   m_ObjectHideFlags: 0
@@ -4034,7 +4035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.00012207031}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2133118152
