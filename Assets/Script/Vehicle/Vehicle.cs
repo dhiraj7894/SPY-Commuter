@@ -33,20 +33,18 @@ public class Vehicle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!mouseUp)
+        if (!PerfectTextPopUp && !mouseUp)
         {
             //if mouse button is not true then just move the train towards the stations 
             //postion which is define by implementing a Traansform object
-            transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.TrainTargetPosition1.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.TrainTargetPosition1.position, speed * Time.fixedDeltaTime);
         }
 
-        if (mouseUp)
-        {
+        if (mouseUp || PerfectTextPopUp)
+        {//if mouse is up and train haven't explode yet then just ran away from train
             if (!isExplode)
-            {
-                //if mouse is up and train haven't explode yet then just ran away from train
                 StartCoroutine(startMovingTowardsSecondPosition());
-            } 
+            
         }
 
         //if we reached to station set plateform collider to trigger in so all passenger can able to walk in from door
@@ -57,24 +55,34 @@ public class Vehicle : MonoBehaviour
             StartCoroutine(reched());
         }
 
-        if(mouseUp && !isExplode)
+        if(!isExplode)
         {
             //let's show the UI if whether we completed this level or not
             //if we fill the train more then max capacity and leave before exploding the train 
             //then just pop up Perfect test on the train
             
-            if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad && !PerfectTextPopUp)
+            if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad  && GameManager.instance.colliderList.Count == GameManager.instance.PassengersCount && !PerfectTextPopUp)
             {
                 Instantiate(GameManager.instance.PerfectPrefeb, new Vector3(-11.05f, 30, 10), Quaternion.Euler(15, 90, 0));
                 StartCoroutine(ShowNextLevelPanal());
                 PerfectTextPopUp = true;
             }
-
-            //and if we fill less than max capacity even one, we need to restart that level
-            if (GameManager.instance.colliderList.Count < GameManager.instance.maxPassengersLoad)
+            if (mouseUp)
             {
-                StartCoroutine(GameManager.instance.restartLevelPanal());
+                if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad && !PerfectTextPopUp)
+                {
+                    Instantiate(GameManager.instance.PerfectPrefeb, new Vector3(-11.05f, 30, 10), Quaternion.Euler(15, 90, 0));
+                    StartCoroutine(ShowNextLevelPanal());
+                    PerfectTextPopUp = true;
+                }
+
+                //and if we fill less than max capacity even one, we need to restart that level
+                if (GameManager.instance.colliderList.Count < GameManager.instance.maxPassengersLoad)
+                {
+                    StartCoroutine(GameManager.instance.restartLevelPanal());
+                }
             }
+           
         }
         
     }
@@ -114,7 +122,7 @@ public class Vehicle : MonoBehaviour
     //if we call this function just show next level panal after 1.5 second
     IEnumerator ShowNextLevelPanal()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         LevelManager.instance.GameOverPanal.SetActive(true);
         LevelManager.instance.NextLevel.SetActive(true);
     }
@@ -122,8 +130,8 @@ public class Vehicle : MonoBehaviour
     //after 0.75 second start moveing away from train if level is paased or we haven't explode the train
     IEnumerator startMovingTowardsSecondPosition()
     {
-        yield return new WaitForSeconds(0.75f);
-        transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.TrainTargetPosition2.position, speed * Time.deltaTime);
+        yield return new WaitForSeconds(1.5f);
+        transform.position = Vector3.MoveTowards(transform.position, GameManager.instance.TrainTargetPosition2.position, speed * Time.fixedDeltaTime);
     }
 
 }

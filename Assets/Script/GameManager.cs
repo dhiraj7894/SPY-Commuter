@@ -92,8 +92,8 @@ public class GameManager : MonoBehaviour
 
     float Gr = 1;
     float Bl = 1;
-    float scale = 3;
-    float scale2 = 1f;
+    float scale = 2.5f;
+    float scale2 = 0.5f;
 
 
 
@@ -301,7 +301,7 @@ public class GameManager : MonoBehaviour
    //Show Rstart panal after 1.5 second
     public IEnumerator restartLevelPanal()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(4f);
         LevelManager.instance.GameOverPanal.SetActive(true);
         LevelManager.instance.RestartLevel.SetActive(true);
     }

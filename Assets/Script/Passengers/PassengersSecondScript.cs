@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PassengersSecondScript : MonoBehaviour
 {
+    public static PassengersSecondScript instance;
     Rigidbody rb;
     bool rotationFreez = false;
 
     void Start()
     {
+        instance = this;
         rb = GetComponent<Rigidbody>();
         GetComponent<Rigidbody>().isKinematic = true;
     }
@@ -28,7 +30,7 @@ public class PassengersSecondScript : MonoBehaviour
             //increase gravity by multiplying he rigibody mass
             rb.AddForce(Physics.gravity * rb.mass);
         }
-            if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             GetComponent<Rigidbody>().isKinematic = false;
             gameObject.layer = LayerMask.NameToLayer("Default");
@@ -51,5 +53,10 @@ public class PassengersSecondScript : MonoBehaviour
         //rb.constraints = RigidbodyConstraints.FreezePosition;
         rb.freezeRotation = true;
         Destroy(gameObject, 4f);
+    }
+    public IEnumerator freezPos()
+    {
+        yield return new WaitForSeconds(0f);
+        GetComponent<Rigidbody>().isKinematic = true;
     }
 }

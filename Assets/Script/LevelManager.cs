@@ -22,6 +22,13 @@ public class LevelManager : MonoBehaviour
         RestartLevel.SetActive(false);
         NextLevel.SetActive(false);
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
     public void Restart()
     {
         //Restart same level after rester click

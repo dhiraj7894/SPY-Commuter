@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4014605052714379102}
   - component: {fileID: 4014605052714379090}
   m_Layer: 0
-  m_Name: Overloaded Text
+  m_Name: Explode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4014605052714379096}
-  m_LocalRotation: {x: 0.17654867, y: 0.88089114, z: -0.06042378, w: 0.43498316}
+  m_LocalRotation: {x: 0.17654648, y: 0.8808902, z: -0.060427126, w: 0.43498552}
   m_LocalPosition: {x: 0, y: 0, z: 0.3000002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []

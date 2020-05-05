@@ -41,6 +41,7 @@ public class Passengers : MonoBehaviour
         if (other.gameObject.CompareTag("door"))
         {
             collidedWithDoor = true;
+            
 
             transform.parent = GameManager.instance.CharecterContainer;
 
@@ -52,7 +53,7 @@ public class Passengers : MonoBehaviour
                 }
             }
             //if list of passenger is increse by maximum passenger count start changing color to red and start expanding
-            if (GameManager.instance.colliderList.Count >= GameManager.instance.maxPassengersLoad)
+            if (GameManager.instance.colliderList.Count > GameManager.instance.maxPassengersLoad)
             {
                 GameManager.instance.colorChangeDecrese();
                 GameManager.instance.trainSizeIncreaser();
@@ -61,6 +62,7 @@ public class Passengers : MonoBehaviour
         }
         //if we collide with charecter container which inside of train just destroy this script
         if(other.gameObject.CompareTag("Character Container")){
+            StartCoroutine(PassengersSecondScript.instance.freezPos());
             Destroy(GetComponent<Passengers>());
         }
 
