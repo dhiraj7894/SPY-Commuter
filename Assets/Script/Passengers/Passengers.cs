@@ -41,7 +41,7 @@ public class Passengers : MonoBehaviour
         if (other.gameObject.CompareTag("door"))
         {
             collidedWithDoor = true;
-            
+            gameObject.layer = LayerMask.NameToLayer("Default");
 
             transform.parent = GameManager.instance.CharecterContainer;
 
@@ -62,7 +62,6 @@ public class Passengers : MonoBehaviour
         }
         //if we collide with charecter container which inside of train just destroy this script
         if(other.gameObject.CompareTag("Character Container")){
-            StartCoroutine(PassengersSecondScript.instance.freezPos());
             Destroy(GetComponent<Passengers>());
         }
 

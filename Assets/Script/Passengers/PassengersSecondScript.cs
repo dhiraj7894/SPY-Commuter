@@ -33,7 +33,7 @@ public class PassengersSecondScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GetComponent<Rigidbody>().isKinematic = false;
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -47,6 +47,13 @@ public class PassengersSecondScript : MonoBehaviour
             }
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Character Container"))
+            StartCoroutine(freezPos());
+    }
+    
     IEnumerator freez()
     {
         yield return new WaitForSeconds(0.5f);
@@ -56,7 +63,7 @@ public class PassengersSecondScript : MonoBehaviour
     }
     public IEnumerator freezPos()
     {
-        yield return new WaitForSeconds(0f);
-        GetComponent<Rigidbody>().isKinematic = true;
+        yield return new WaitForSeconds(0.5f);
+        //GetComponent<Rigidbody>().mass = 1;
     }
 }

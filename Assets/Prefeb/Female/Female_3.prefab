@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 6754772412026862937}
   - component: {fileID: 1909439660940822008}
   - component: {fileID: 235866465698067269}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Female_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
